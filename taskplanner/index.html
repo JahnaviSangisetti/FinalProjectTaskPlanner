@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        
+    <title>Task Planner Web App :: Bootstrap</title>
+  </head>
+  
+  <style>
+      body {
+        background-color:floralwhite;
+      }
+      nav {
+        background-color: lightsteelblue;
+        /* flex: 0 0 40px;
+        color: white; */
+        padding: 20px;
+      }
+        
+    li {
+	padding: 10px 20px;
+	text-transform: capitalize;
+	border-radius: 5px;
+	margin-bottom: 10px;
+    }
+    .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  display: block;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+ 
+}
+    </style>
+  
+<body>
+  
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <span class="navbar-brand mb-0 text-light" style="font-size: 35px;">Task Planner</span>
+            
+            <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+       
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav justify-content-end">
+                <a class="nav-item nav-link disabled" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link disabled" href="#">Account</a>
+                <a class="nav-item nav-link disabled" href="#">Settings</a>
+                <a class="nav-item nav-link disabled" href="#">Messages</a>
+            </div>
+        </div>
+        <div id="date"></div>
+
+        </nav>
+   
+    
+    <div class="container " style="margin-top:20px;">
+        <div class= "center">
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-success btn-lg"   data-toggle="modal" data-target="#modalCenter">
+            <i class="fas fa-lg"></i>Create task
+          </button>  
+        </div>
+</div>
+          <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+        <form id="newTaskForm" action="/action_page.php" class="needs-validation">
+           
+            <div class="form-group " novalidation>
+                <label for="newTaskNameInput" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <textarea id="newTaskNameInput" type="text" placeholder="Add task name" class="form-control" minlength="8" required autofocus></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Task Name needs to be 8 characters long or more</div>
+                </div>
+            </div>
+            
+            <div class="form-group " novalidation>
+                <label for="newTaskDescription" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <textarea id="newTaskDescription" placeholder="Add task description" class="form-control" rows="5" minlength="15" required></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Description needs to be 15 characters long or more</div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label for="newTaskAssignedTo" class="col-sm-3 col-form-label">Assigned To</label>
+                <div class="col-sm-9">
+                    <input id="newTaskAssignedTo" type="text" class="form-control" minlength="8" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Name of assignee needs to be 8 characters long or more</div>
+                </div>
+            </div>
+
+            <div class="md-form md-outline input-with-post-icon">
+                <label for="newTaskDueDate" class="col-sm-3 col-form-label">Due Date</label>
+                <div class="col-sm-9">
+                    <input placeholder="Select date" id="newTaskDueDate" type="date" class="form-control" placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+
+          
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="form-button" type="button" data-dismiss="modal" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <section class="mt-5" /*style="background-color:honeydew"*/>
+    <div class="container" style="padding:20px; background-color:honeydew">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 style="background-color:lavenderblush; padding: 20px;">Task List</h2>
+                <ul class="list-group" id="tasksList">
+                    <li class="list-group-item" style="background-color:lemonchiffon;">
+                        <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
+                            <h5>Task title shown here</h5>
+                            <span class="badge badge-danger">TODO</span>
+                        </div>
+                        <div class="d-flex w-100 mb-3 justify-content-between">
+                            <small>Assigned To: Person</small>
+                            <small>Due: date shown here</small>
+                        </div>
+                        <p>Brief description of task</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <script src="js/taskManager.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
+         
