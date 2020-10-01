@@ -1,6 +1,8 @@
+const myStorage = window.localStorage;
 //create a new function, createTaskHtml
 const createTaskHtml = (id,name, description, assignedTo, dueDate, status) => `
     <li class="list-group-item" data-task-id="${id}" style="background-color:lemonchiffon;">
+    
     <div class="d-flex w-100 justify-content-end">
     <button class="dbutton btn-danger btn-sm" type="submit">X</button>
     </div>
@@ -19,6 +21,7 @@ const createTaskHtml = (id,name, description, assignedTo, dueDate, status) => `
 </div>
     </li>
 `;
+
 
 // Create a TaskManager class
 class TaskManager {
@@ -59,6 +62,17 @@ class TaskManager {
 
         
     }
+    deleteTask(taskId){
+        const newTasks =[];
+        for(let i=0;i< this.tasks.length;i++ ){
+            const task = this.tasks[i];
+            if(task.id !== taskId){
+                newTasks.push(task);
+                
+             }
+        }
+        this.tasks = newTasks;
+    }
     // Create the render method
     render() {
         // Create an array to store the tasks' HTML
@@ -91,4 +105,24 @@ class TaskManager {
         const tasksList = document.querySelector('#tasksList');
         tasksList.innerHTML = tasksHtml;
     }
+    save(){
+// const tasksJSON = JSON.stringify(this.tasks);
+       myStorage.setItem('tasks', JSON.stringify(this.tasks));
+// const currentId = String(this.currentId);
+      myStorage.setItem('currentId', String(this.currentId));
+    }
+    load(){
+        if(myStorage.getItem('tasks')){
+            const tasksJson =  myStorage.getItem('tasks');
+            this.tasks = JSON.parse(tasksJson);
+        }
+        if(myStorage.getItem('currenId')){
+            const currentId = myStorage.getItem(currentId);
+            this.currentId = Number(currentId);
+        }
+       
+       
+
+    }
+   
 }
