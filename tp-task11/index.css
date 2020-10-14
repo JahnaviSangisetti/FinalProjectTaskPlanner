@@ -1,0 +1,43 @@
+body {
+        /* background-color:floralwhite; */
+        background: url('https://source.unsplash.com/GQD3Av_9A88') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+         
+        }
+
+        nav {
+        background-color: lightsteelblue;
+        /* flex: 0 0 40px;
+        color: white; */
+        padding: 20px;
+        
+        }
+            
+        li {
+        padding: 10px 20px;
+        text-transform: capitalize;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        
+        }
+
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 100%;
+        display: block;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+
+        }
+        .card_title {
+                height: 6rem;
+              }
+              
